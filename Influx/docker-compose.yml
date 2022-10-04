@@ -1,0 +1,25 @@
+version: "3"
+services:
+  influxdb:
+    image: influxdb:2.0
+    container_name: influxdb
+    restart: always
+    ports:
+      - 8086:8086
+    networks:
+      - grafana_network
+    volumes:
+      - influxdb:/var/lib/influxdb
+      - influxdb2:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=naiades
+      - DOCKER_INFLUXDB_INIT_PASSWORD=water4cities
+      - DOCKER_INFLUXDB_INIT_ORG=naiades
+      - DOCKER_INFLUXDB_INIT_BUCKET=naiades
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=ZykEIhhYe0KRjleAAjFX9LhEm_H7SeLiLe6Kc71f1452Lps7U6MECvOHw9UooSanWwm7SKqe0kTXDnOhoAMNNA==
+networks:
+  grafana_network:
+volumes:
+  influxdb:
+  influxdb2:
